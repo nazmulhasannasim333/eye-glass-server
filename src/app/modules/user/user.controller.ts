@@ -1,16 +1,33 @@
-import { Request, Response } from "express";
-import { UserServices } from "./user.service";
+/* eslint-disable no-unused-vars */
 
-const createUser = async (req: Request, res: Response) => {
-  const newUSer = req.body;
-  // console.log(newUSer);
-  const result = UserServices.createUserIntoDB(newUSer);
-  res.status(200).json({
+import { UserServices } from "./user.service";
+import catchAsync from "../../utils/catchAsync";
+import sendResponse from "../../utils/sendResponse";
+import httpStatus from "http-status";
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const createUser = catchAsync(async (req, res, next) => {
+  const newUser = req.body;
+  const result = await UserServices.createUserIntoDB(newUser);
+  //   send response
+  sendResponse(res, {
     success: true,
-    statusCode: 200,
+    statusCode: httpStatus.OK,
     message: "User created successfully",
     data: result,
   });
-};
+});
 
-export const UserController = { createUser };
+const loginUser = catchAsync(async (req, res) => {
+  const result = await UserServices.loginUser(req.body);
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "User login successfully",
+    data: {
+      accessToken: result,
+    },
+  });
+});
+
+export const UserController = { createUser, loginUser };
