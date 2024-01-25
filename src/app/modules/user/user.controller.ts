@@ -5,8 +5,7 @@ import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
 import httpStatus from "http-status";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const createUser = catchAsync(async (req, res, next) => {
+const createUser = catchAsync(async (req, res) => {
   const newUser = req.body;
   const result = await UserServices.createUserIntoDB(newUser);
   //   send response
