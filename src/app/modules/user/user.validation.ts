@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const createStudentValidationSchema = z.object({
+const createUserValidationSchema = z.object({
   name: z.string(),
   email: z.string().email(),
   password: z.string(),
@@ -12,6 +12,6 @@ const loginValidationSchema = z.object({
 });
 
 export const UserZodValidations = {
-  createStudentValidationSchema,
+  createUserValidationSchema,
   loginValidationSchema,
 };
