@@ -6,7 +6,6 @@ export interface TEyeglasses {
   frameShape: string;
   lensType: string;
   brand: string;
-  price: number;
   gender: string;
   color: string;
 }

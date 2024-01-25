@@ -32,10 +32,6 @@ const eyeglassesSchema = new Schema<TEyeglasses>(
       type: String,
       required: true,
     },
-    price: {
-      type: Number,
-      required: true,
-    },
     gender: {
       type: String,
       required: true,

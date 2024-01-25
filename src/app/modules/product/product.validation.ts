@@ -8,7 +8,6 @@ export const createEyeglassesSchema = z.object({
   frameShape: z.string(),
   lensType: z.string(),
   brand: z.string(),
-  price: z.number(),
   gender: z.string(),
   color: z.string(),
 });
