@@ -16,7 +16,6 @@ const getAllProductIntoDB = async (query: Record<string, unknown>) => {
     .filter()
     .filterByPriceRange(minPrice, maxPrice);
   const result = await productQuery.modelQuery;
-  console.log(result);
   return result;
 };
 

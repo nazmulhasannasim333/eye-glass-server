@@ -48,37 +48,6 @@ class QueryBuilder<T> {
     }
     return this;
   }
-
-  //   filterByPriceRange(minPrice: number, maxPrice: number) {
-  //     if (minPrice !== undefined && maxPrice !== undefined) {
-  //       console.log({ minPrice, maxPrice });
-
-  //       const priceRangeQuery: FilterQuery<T> = {
-  //         productPrice: { $gte: minPrice, $lte: maxPrice },
-  //       };
-  //       console.log({ priceRangeQuery });
-
-  //       this.modelQuery = this.modelQuery.find(priceRangeQuery);
-  //     }
-
-  //     return this;
-  //   }
-
-  //   filterByPriceRange(minPrice: number, maxPrice: number) {
-  //     minPrice = Number(minPrice);
-  //     maxPrice = Number(maxPrice);
-
-  //     if (!isNaN(minPrice) && !isNaN(maxPrice)) {
-  //       const priceRangeQuery: FilterQuery<T> = {
-  //         productPrice: { $gte: minPrice, $lte: maxPrice },
-  //       };
-  //       console.log({ priceRangeQuery });
-
-  //       this.modelQuery = this.modelQuery.find(priceRangeQuery);
-  //     }
-
-  //     return this;
-  //   }
 }
 
 export default QueryBuilder;
