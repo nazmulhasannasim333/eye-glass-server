@@ -26,21 +26,28 @@ class QueryBuilder<T> {
 
   filter() {
     const queryObj = { ...this.query };
-    const excludeFields = ["searchTerm", "sort", "limit", "page", "fields"];
+    const excludeFields = [
+      "searchTerm",
+      "sort",
+      "limit",
+      "page",
+      "fields",
+      "minPrice",
+      "maxPrice",
+    ];
     excludeFields.forEach((el) => delete queryObj[el]);
     this.modelQuery = this.modelQuery.find(queryObj as FilterQuery<T>);
     return this;
   }
 
-  //   filterByPriceRange(minPrice: number, maxPrice: number) {
-  //     if (minPrice !== undefined && maxPrice !== undefined) {
-  //       console.log({ minPrice, maxPrice });
-  //       this.modelQuery = this.modelQuery.find({
-  //         productPrice: { $gte: minPrice, $lte: maxPrice },
-  //       } as FilterQuery<T>);
-  //     }
-  //     return this;
-  //   }
+  filterByPriceRange(minPrice: number, maxPrice: number) {
+    if (minPrice !== undefined && maxPrice !== undefined) {
+      this.modelQuery = this.modelQuery.find({
+        productPrice: { $gte: minPrice, $lte: maxPrice },
+      } as FilterQuery<T>);
+    }
+    return this;
+  }
 
   //   filterByPriceRange(minPrice: number, maxPrice: number) {
   //     if (minPrice !== undefined && maxPrice !== undefined) {

@@ -8,13 +8,15 @@ const createProductIntoDB = async (payload: TEyeglasses) => {
 };
 
 const getAllProductIntoDB = async (query: Record<string, unknown>) => {
-  // const minPrice = query.minPrice as number;
-  // const maxPrice = query.maxPrice as number;
+  const minPrice = query.minPrice as number;
+  const maxPrice = query.maxPrice as number;
 
   // console.log({ minPrice, maxPrice });
-  const productQuery = new QueryBuilder(Eyeglass.find(), query).filter();
-  // .filterByPriceRange(minPrice, maxPrice);
+  const productQuery = new QueryBuilder(Eyeglass.find(), query)
+    .filter()
+    .filterByPriceRange(minPrice, maxPrice);
   const result = await productQuery.modelQuery;
+  console.log(result);
   return result;
 };
 
