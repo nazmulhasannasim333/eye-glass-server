@@ -16,6 +16,10 @@ const eyeglassesSchema = new Schema<TEyeglasses>(
       type: Number,
       required: true,
     },
+    productImage: {
+      type: String,
+      required: true,
+    },
     frameMaterial: {
       type: String,
       required: true,
@@ -34,6 +38,7 @@ const eyeglassesSchema = new Schema<TEyeglasses>(
     },
     gender: {
       type: String,
+      enum: ["Male", "Female"],
       required: true,
     },
     color: {
