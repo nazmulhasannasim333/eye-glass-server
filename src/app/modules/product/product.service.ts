@@ -16,6 +16,9 @@ const getAllProductIntoDB = async (query: Record<string, unknown>) => {
     "lensType",
     "brand",
     "gender",
+    "frameMaterial",
+    "frameShape",
+    "frameMaterial",
   ];
   const productQuery = new QueryBuilder(Eyeglass.find(), query)
     .search(ProductSearchableFields)
@@ -34,6 +37,13 @@ const deleteProductIntoDB = async (id: string) => {
   const result = await Eyeglass.findByIdAndDelete(id);
   return result;
 };
+
+const deleteManyProductsIntoDB = async (ids: string[]) => {
+  const filter = { _id: { $in: ids } };
+  const result = await Eyeglass.deleteMany(filter);
+  return result;
+};
+
 const updateProductIntoDB = async (
   id: string,
   payload: Partial<TEyeglasses>
@@ -47,5 +57,6 @@ export const EyeGlassServices = {
   getAllProductIntoDB,
   getSingleProductIntoDB,
   deleteProductIntoDB,
+  deleteManyProductsIntoDB,
   updateProductIntoDB,
 };
