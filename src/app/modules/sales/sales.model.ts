@@ -6,7 +6,6 @@ const salesSchema = new Schema<TSales>(
     productId: {
       type: Schema.Types.ObjectId,
       required: true,
-      unique: true,
       ref: "Eyeglass",
     },
     quantity: { type: Number, required: true },

@@ -1,23 +1,21 @@
+import { Eyeglass } from "../product/product.model";
 import { TSales } from "./sales.interface";
 import { Sales } from "./sales.model";
 
 const createSalesIntoDB = async (payload: TSales) => {
-  const result = await Sales.create(payload);
-  return result;
+  const { productId, quantity } = payload;
+
+  const glass = await Eyeglass.updateOne(
+    { _id: productId, productQuantity: { $gte: quantity } },
+    { $inc: { productQuantity: -quantity } }
+  );
+  if (glass.modifiedCount === 1) {
+    const salesResult = await Sales.create(payload);
+    return salesResult;
+  } else {
+    throw new Error("Insufficient quantity or glass not found");
+  }
 };
-
-// const getAllSalesIntoDB = async (query: Record<string, unknown>) => {
-//   console.log(query);
-//   const {weekly, daily, monthly, yearly} = query
-
-//   if(daily){
-
-//   }else if(weekly){
-
-//   }
-//   const result = await Sales.find().populate("productId");
-//   return result;
-// };
 
 const getAllSalesIntoDB = async (query: Record<string, unknown>) => {
   const { filterBy } = query;
