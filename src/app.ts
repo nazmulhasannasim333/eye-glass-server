@@ -10,7 +10,7 @@ const app: Application = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://eye-glass-inventory.vercel.app"],
+    origin: ["https://eye-glass-inventory.vercel.app", "http://localhost:5174"],
     credentials: true,
   })
 );
