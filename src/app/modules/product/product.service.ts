@@ -23,7 +23,8 @@ const getAllProductIntoDB = async (query: Record<string, unknown>) => {
   const productQuery = new QueryBuilder(Eyeglass.find(), query)
     .search(ProductSearchableFields)
     .filter()
-    .filterByPriceRange(minPrice, maxPrice);
+    .filterByPriceRange(minPrice, maxPrice)
+    .paginate();
   const result = await productQuery.modelQuery;
   return result;
 };
