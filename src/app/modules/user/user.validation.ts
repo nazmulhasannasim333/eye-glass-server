@@ -4,6 +4,7 @@ const createUserValidationSchema = z.object({
   name: z.string(),
   email: z.string().email(),
   password: z.string(),
+  role: z.enum(["user", "manager"]).default("user"),
 });
 
 const loginValidationSchema = z.object({

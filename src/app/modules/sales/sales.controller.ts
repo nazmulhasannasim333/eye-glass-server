@@ -16,7 +16,8 @@ const createSales = catchAsync(async (req, res) => {
 });
 
 const getAllSales = catchAsync(async (req, res) => {
-  const result = await SalesServices.getAllSalesIntoDB(req.query);
+  const { email, role } = req.params;
+  const result = await SalesServices.getAllSalesIntoDB(req.query, email, role);
   //   send response
   sendResponse(res, {
     success: true,

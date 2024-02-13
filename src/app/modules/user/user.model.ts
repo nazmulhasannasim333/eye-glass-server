@@ -12,6 +12,12 @@ const userSchema = new Schema<TUser, UserModel>(
       type: String,
       required: true,
     },
+    role: {
+      type: String,
+      enum: ["user", "manager"],
+      required: true,
+      default: "user",
+    },
   },
   {
     timestamps: true,

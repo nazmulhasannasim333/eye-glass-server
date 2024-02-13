@@ -10,7 +10,7 @@ const app: Application = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://eye-glass-inventory.vercel.app"],
+    origin: ["http://localhost:5173"],
     credentials: true,
   })
 );
@@ -23,12 +23,6 @@ app.use("/api", router);
 
 // global error handler middleware
 app.use(globalErrorHandler);
-// app.use((err, req, res, next) => {
-//   res.status(500).json({
-//     success: false,
-//     message: "something went wrong",
-//   });
-// });
 
 // not found middleware
 app.use(notFount);

@@ -1,13 +1,25 @@
+import httpStatus from "http-status";
 import QueryBuilder from "../../builder/QueryBuilder";
+import AppError from "../../errors/AppError";
 import { TEyeglasses } from "./product.interface";
 import { Eyeglass } from "./product.model";
+import { User } from "../user/user.model";
 
 const createProductIntoDB = async (payload: TEyeglasses) => {
+  const userEmail = payload.userEmail;
+  const userExist = await User.findOne({ email: userEmail });
+  if (!userExist) {
+    throw new AppError(httpStatus.NOT_FOUND, "User not found");
+  }
   const result = await Eyeglass.create(payload);
   return result;
 };
 
-const getAllProductIntoDB = async (query: Record<string, unknown>) => {
+const getAllProductIntoDB = async (
+  query: Record<string, unknown>,
+  email: string,
+  role: string
+) => {
   const minPrice = query.minPrice as number;
   const maxPrice = query.maxPrice as number;
   const ProductSearchableFields = [
@@ -25,7 +37,16 @@ const getAllProductIntoDB = async (query: Record<string, unknown>) => {
     .filter()
     .filterByPriceRange(minPrice, maxPrice)
     .paginate();
-  const result = await productQuery.modelQuery;
+
+  let result;
+  if (role === "manager") {
+    result = await productQuery.modelQuery;
+  } else if (role === "user") {
+    // console.log(email, role);
+    result = await productQuery.modelQuery.find({ userEmail: email });
+  } else {
+    throw new AppError(httpStatus.BAD_REQUEST, "Invalid user role");
+  }
   return result;
 };
 

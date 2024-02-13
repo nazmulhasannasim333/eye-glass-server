@@ -11,6 +11,7 @@ export const createEyeglassesSchema = z.object({
   brand: z.string(),
   gender: z.enum(["Male", "Female"]),
   color: z.string(),
+  userEmail: z.string(),
 });
 
 export const ProductValidation = {

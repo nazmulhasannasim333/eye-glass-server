@@ -10,6 +10,7 @@ const salesSchema = new Schema<TSales>(
     },
     quantity: { type: Number, required: true },
     buyerName: { type: String, required: true },
+    userEmail: { type: String, required: true },
   },
   {
     timestamps: true,

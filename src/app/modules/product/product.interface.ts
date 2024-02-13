@@ -9,4 +9,5 @@ export interface TEyeglasses {
   brand: string;
   gender: "Male" | "Female";
   color: string;
+  userEmail: string;
 }

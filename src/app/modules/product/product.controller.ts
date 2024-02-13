@@ -16,7 +16,12 @@ const createProduct = catchAsync(async (req, res) => {
 });
 
 const getAllProduct = catchAsync(async (req, res) => {
-  const result = await EyeGlassServices.getAllProductIntoDB(req.query);
+  const { email, role } = req.params;
+  const result = await EyeGlassServices.getAllProductIntoDB(
+    req.query,
+    email,
+    role
+  );
   //   send response
   sendResponse(res, {
     success: true,

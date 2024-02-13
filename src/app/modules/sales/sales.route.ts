@@ -10,6 +10,6 @@ router.post(
   validateRequest(SalesZodValidations.createSalesValidationSchema),
   SalesControllers.createSales
 );
-router.get("/get-all-sales", SalesControllers.getAllSales);
+router.get("/get-all-sales/:email/:role", SalesControllers.getAllSales);
 
 export const SalesRoutes = router;

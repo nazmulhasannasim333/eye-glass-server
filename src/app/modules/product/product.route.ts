@@ -11,7 +11,7 @@ router.post(
   ProductController.createProduct
 );
 
-router.get("/get-all-products", ProductController.getAllProduct);
+router.get("/get-all-products/:email/:role", ProductController.getAllProduct);
 router.get("/get-single-product/:id", ProductController.getSingleProduct);
 router.delete("/delete-product/:id", ProductController.deleteProduct);
 router.delete("/delete-products", ProductController.deleteManyProduct);
