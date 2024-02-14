@@ -128,4 +128,13 @@ const getAllSalesIntoDB = async (
   return result;
 };
 
-export const SalesServices = { createSalesIntoDB, getAllSalesIntoDB };
+const getSingleSaleIntoDB = async (id: string) => {
+  const result = Sales.findById(id).populate("productId");
+  return result;
+};
+
+export const SalesServices = {
+  createSalesIntoDB,
+  getAllSalesIntoDB,
+  getSingleSaleIntoDB,
+};

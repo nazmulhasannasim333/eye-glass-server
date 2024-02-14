@@ -11,5 +11,6 @@ router.post(
   SalesControllers.createSales
 );
 router.get("/get-all-sales/:email/:role", SalesControllers.getAllSales);
+router.get("/get-sale/:id", SalesControllers.getSingleSale);
 
 export const SalesRoutes = router;
